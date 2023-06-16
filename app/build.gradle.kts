@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.com.android.application)
     alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.io.gitlab.arturbosch.detekt)
+    kotlin("kapt")
+    alias(libs.plugins.hilt.android.plugin)
 }
 
 android {
@@ -49,6 +51,9 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
@@ -68,4 +73,6 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 }
