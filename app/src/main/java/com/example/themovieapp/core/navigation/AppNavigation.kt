@@ -5,7 +5,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.themovieapp.core.navigation.routes.account.accountNavigation
-import com.example.themovieapp.core.navigation.routes.auth.AuthScreens
 import com.example.themovieapp.core.navigation.routes.auth.authNavigation
 import com.example.themovieapp.core.navigation.routes.favorite.favoriteNavigation
 import com.example.themovieapp.core.navigation.routes.home.homeNavigation
@@ -21,7 +20,8 @@ fun AppNavigation() {
         composable(AppScreens.Splash.route) {
             SplashScreen(
                 onNavigate = {
-                    navController.navigate(AuthScreens.AuthNavigation.route)
+                    navController.popBackStack()
+                    navController.navigate(AppScreens.AuthNavigation.route)
                 }
             )
         }
