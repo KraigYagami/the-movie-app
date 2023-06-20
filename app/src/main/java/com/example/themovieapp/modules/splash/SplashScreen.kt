@@ -16,10 +16,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.themovieapp.R
 import kotlinx.coroutines.delay
 
+private const val SPLASH_DELAY = 3000L
 @Composable
 fun SplashScreen(onNavigate: () -> Unit) {
     LaunchedEffect(Unit) {
-        delay(3000)
+        delay(SPLASH_DELAY)
         onNavigate()
     }
 
