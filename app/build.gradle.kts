@@ -3,8 +3,9 @@ plugins {
     alias(libs.plugins.com.android.application)
     alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.io.gitlab.arturbosch.detekt)
-    kotlin("kapt")
     alias(libs.plugins.hilt.android.plugin)
+    alias(libs.plugins.com.google.gms.google.services)
+    kotlin("kapt")
 }
 
 android {
@@ -60,6 +61,8 @@ dependencies {
 
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.lifecycle.runtime.compose)
+    implementation(libs.lifecycle.viewmodel.compose)
     implementation(libs.activity.compose)
     implementation(platform(libs.compose.bom))
     implementation(libs.ui)
@@ -86,4 +89,12 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.moshi)
     implementation(libs.logging.interceptor)
+
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.play.services.auth)
+
+    // Coil
+    implementation(libs.coil.compose)
 }
