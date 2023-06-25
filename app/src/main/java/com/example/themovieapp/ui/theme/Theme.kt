@@ -1,3 +1,5 @@
+@file:Suppress("PrivatePropertyName")
+
 package com.example.themovieapp.ui.theme
 
 import android.app.Activity
@@ -22,9 +24,9 @@ private val DarkColorScheme = darkColorScheme(
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+    primary = LightBlue,
+    secondary = DarkBlue,
+    tertiary = MediumBlue
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
@@ -41,7 +43,7 @@ private val LightColorScheme = lightColorScheme(
 fun TheMovieAppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
