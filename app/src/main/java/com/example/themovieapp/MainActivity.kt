@@ -8,6 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.example.themovieapp.core.auth.GoogleAuthUiClient
+import com.example.themovieapp.core.auth.GoogleEmailAuthClient
 import com.example.themovieapp.core.navigation.AppNavigation
 import com.example.themovieapp.ui.theme.TheMovieAppTheme
 import com.google.android.gms.auth.api.identity.Identity
@@ -23,6 +24,10 @@ class MainActivity : ComponentActivity() {
         )
     }
 
+    private val googleEmailAuthClient by lazy {
+        GoogleEmailAuthClient()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -32,7 +37,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    AppNavigation(googleAuthUiClient = googleAuthUiClient)
+                    AppNavigation(
+                        googleAuthUiClient = googleAuthUiClient,
+                        googleEmailAuthClient = googleEmailAuthClient
+                    )
                 }
             }
         }

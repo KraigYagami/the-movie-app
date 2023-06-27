@@ -42,7 +42,9 @@ import com.example.themovieapp.core.composables.OutlinedPasswordField
 @Composable
 fun LoginScreen(
     state: SignInViewModel.SignInState,
-    onSignIn: () -> Unit
+    onLoginUser: (email: String, password: String) -> Unit,
+    onCreateUser: (email: String, password: String) -> Unit,
+    onGoogleSignInButton: () -> Unit
 ) {
     val context = LocalContext.current
 
@@ -52,7 +54,11 @@ fun LoginScreen(
         }
     }
 
-    LoginView(onSignIn = onSignIn)
+    LoginView(
+        onLoginUser = onLoginUser,
+        onCreateUser = onCreateUser,
+        onGoogleSignInButton = onGoogleSignInButton
+    )
 }
 
 @Preview(showBackground = true, showSystemUi = true)
@@ -60,12 +66,18 @@ fun LoginScreen(
 private fun LoginPreview() {
     LoginScreen(
         state = SignInViewModel.SignInState(),
-        onSignIn = {}
+        onLoginUser = { _, _ -> },
+        onCreateUser = { _, _ -> },
+        onGoogleSignInButton = {}
     )
 }
 
 @Composable
-private fun LoginView(onSignIn: () -> Unit) {
+private fun LoginView(
+    onLoginUser: (email: String, password: String) -> Unit,
+    onCreateUser: (email: String, password: String) -> Unit,
+    onGoogleSignInButton: () -> Unit
+) {
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
 
@@ -115,7 +127,9 @@ private fun LoginView(onSignIn: () -> Unit) {
             ) {
                 Text(text = "Forgot password?")
             }
-            Button(onClick = {}, modifier = Modifier.fillMaxWidth()) {
+            Button(onClick = {
+                onLoginUser(email, password)
+            }, modifier = Modifier.fillMaxWidth()) {
                 Text(text = "Login", fontSize = 16.sp)
             }
 
@@ -131,7 +145,7 @@ private fun LoginView(onSignIn: () -> Unit) {
             }
 
             GoogleButton(
-                onClicked = onSignIn,
+                onClicked = onGoogleSignInButton,
                 modifier = Modifier.fillMaxWidth(),
                 shape = MaterialTheme.shapes.extraLarge
             )
@@ -149,7 +163,9 @@ private fun LoginView(onSignIn: () -> Unit) {
             horizontalArrangement = Arrangement.Center
         ) {
             Text(text = "Don't have an account?")
-            TextButton(onClick = {}) {
+            TextButton(onClick = {
+                onCreateUser(email, password)
+            }) {
                 Text(text = "Register")
             }
         }
