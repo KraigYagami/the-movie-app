@@ -30,8 +30,9 @@ fun NavGraphBuilder.homeNavigation(
                     scope.launch {
                         googleAuthUiClient.signOut()
                         Toast.makeText(context, "Signed out", Toast.LENGTH_LONG).show()
+                        navController.popBackStack()
+                        navController.navigate(AppScreens.AuthNavigation.route)
                     }
-                    navController.popBackStack()
                 }
             )
         }

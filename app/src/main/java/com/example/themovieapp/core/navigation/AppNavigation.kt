@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.themovieapp.core.auth.GoogleAuthUiClient
+import com.example.themovieapp.core.auth.GoogleEmailAuthClient
 import com.example.themovieapp.core.navigation.routes.account.accountNavigation
 import com.example.themovieapp.core.navigation.routes.auth.authNavigation
 import com.example.themovieapp.core.navigation.routes.favorite.favoriteNavigation
@@ -12,7 +13,10 @@ import com.example.themovieapp.core.navigation.routes.home.homeNavigation
 import com.example.themovieapp.modules.splash.SplashScreen
 
 @Composable
-fun AppNavigation(googleAuthUiClient: GoogleAuthUiClient) {
+fun AppNavigation(
+    googleAuthUiClient: GoogleAuthUiClient,
+    googleEmailAuthClient: GoogleEmailAuthClient
+) {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
@@ -26,7 +30,11 @@ fun AppNavigation(googleAuthUiClient: GoogleAuthUiClient) {
                 }
             )
         }
-        authNavigation(navController = navController, googleAuthUiClient = googleAuthUiClient)
+        authNavigation(
+            navController = navController,
+            googleAuthUiClient = googleAuthUiClient,
+            googleEmailAuthClient = googleEmailAuthClient
+        )
         homeNavigation(navController = navController, googleAuthUiClient = googleAuthUiClient)
         favoriteNavigation()
         accountNavigation()
