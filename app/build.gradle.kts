@@ -1,21 +1,21 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.com.android.application)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
-    alias(libs.plugins.io.gitlab.arturbosch.detekt)
+    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.kotlinAndroid)
+//    alias(libs.plugins.io.gitlab.arturbosch.detekt)
     alias(libs.plugins.hilt.android.plugin)
     alias(libs.plugins.com.google.gms.google.services)
     kotlin("kapt")
 }
 
 android {
-    namespace = "com.example.themovieapp"
-    compileSdk = 33
+    namespace = "com.kraigcorp.themovieapp"
+    compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.themovieapp"
+        applicationId = "com.kraigcorp.themovieapp"
         minSdk = 26
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -45,7 +45,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = "1.5.1"
     }
     packaging {
         resources {
